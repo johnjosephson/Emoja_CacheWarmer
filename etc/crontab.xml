@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="cache_warmer">
+        <!-- Run warmer job | System->Page Cache Warmer->Jobs (table) -->
+        <job name="emoja_cache_warmer_warm" instance="Emoja\CacheWarmer\Cron\WarmCron" method="execute">
+            <config_path>emoja_cachewarmer/cron/warm_cron_schedule</config_path>
+        </job>
+        <job name="emoja_cache_warmer_check" instance="Emoja\CacheWarmer\Cron\CheckCron" method="execute">
+            <config_path>emoja_cachewarmer/cron/check_cron_schedule</config_path>
+        </job>
+        <job name="emoja_cache_configurable_json_config"
+             instance="Emoja\CacheWarmer\Cron\CacheConfigurableJsonConfigCron"
+             method="execute">
+            <config_path>emoja_cachewarmer/cron/config_json_schedule</config_path>
+        </job>
+        <job name="emoja_cache_warmer_cleanlogs"
+             instance="Emoja\CacheWarmer\Cron\CleanLogsCron"
+             method="execute">
+            <config_path>emoja_cachewarmer/cron/clean_logs_schedule</config_path>
+        </job>
+    </group>
+</config>

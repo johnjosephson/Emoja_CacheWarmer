@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Emoja_CacheWarmer
+ *
+ * @copyright   Copyright (c) 2025 John Josephson
+ * @author      johnjay@alumni.caltech.edu
+ */
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">emojacachewarmer_log_listing.emojacachewarmer_log_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>cachewarmer_log_columns</spinner>
+        <deps>
+            <dep>emojacachewarmer_log_listing.emojacachewarmer_log_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="emojacachewarmer_log_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">log_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Emoja_CacheWarmer::log_listing</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="emojacachewarmer_log_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>log_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+
+        </filters>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete the selected logs?</message>
+                        <title translate="true">Delete Logs</title>
+                    </confirm>
+                    <url path="cachewarmer/log/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="cachewarmer_log_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>log_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="log_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="action" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Emoja\CacheWarmer\Model\Source\Action"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Action</label>
+            </settings>
+        </column>
+        <column name="page_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Page ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="uri">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">URI</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Emoja\CacheWarmer\Model\Source\Status"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="group_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Group ID</label>
+            </settings>
+        </column>
+        <column name="store_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Store ID</label>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+        <column name="cached_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Cached At</label>
+            </settings>
+        </column>
+        <column name="warmed_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Warmed At</label>
+            </settings>
+        </column>
+        <column name="flushed_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Flushed At</label>
+            </settings>
+        </column>
+     </columns>
+</listing>

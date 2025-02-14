@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Emoja_CacheWarmer
+ *
+ * @copyright   Copyright (c) 2025 John Josephson
+ * @author      johnjay@alumni.caltech.edu
+ */
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">emojacachewarmer_page_listing.`emojacachewarmer_page_listing_data_source`</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>cachewarmer_page_columns</spinner>
+        <deps>
+            <dep>emojacachewarmer_page_listing.emojacachewarmer_page_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="emojacachewarmer_page_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">page_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Emoja_CacheWarmer::page_listing</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="emojacachewarmer_page_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>page_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+
+        </filters>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="warm">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to warm the selected pages?</message>
+                        <title translate="true">Warm pages</title>
+                    </confirm>
+                    <url path="cachewarmer/page/massWarm"/>
+                    <type>warm</type>
+                    <label translate="true">Warm</label>
+                </settings>
+            </action>
+            <action name="check">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to check the selected pages?</message>
+                        <title translate="true">Check pages</title>
+                    </confirm>
+                    <url path="cachewarmer/page/massCheck"/>
+                    <type>check</type>
+                    <label translate="true">Check</label>
+                </settings>
+            </action>
+            <action name="sync">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to sync the selected pages?</message>
+                        <title translate="true">Sync pages</title>
+                    </confirm>
+                    <url path="cachewarmer/page/massSync"/>
+                    <type>sync</type>
+                    <label translate="true">Sync</label>
+                </settings>
+            </action>
+            <action name="load">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to load the selected pages?</message>
+                        <title translate="true">Load Pages</title>
+                    </confirm>
+                    <url path="cachewarmer/page/massLoad"/>
+                    <type>load</type>
+                    <label translate="true">Load</label>
+                </settings>
+            </action>
+            <action name="clean">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to clean the selected pages?</message>
+                        <title translate="true">Clean pages</title>
+                    </confirm>
+                    <url path="cachewarmer/page/massClean"/>
+                    <type>clean</type>
+                    <label translate="true">Clean</label>
+                </settings>
+            </action>
+            <action name="enable">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to ensable the selected pages?</message>
+                        <title translate="true">Ensable pages</title>
+                    </confirm>
+                    <url path="cachewarmer/page/massEnable"/>
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to disable the selected pages?</message>
+                        <title translate="true">Disable pages</title>
+                    </confirm>
+                    <url path="cachewarmer/page/massDisable"/>
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete the selected pages?</message>
+                        <title translate="true">Delete pages</title>
+                    </confirm>
+                    <url path="cachewarmer/page/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="cachewarmer_page_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>page_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="page_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="uri">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">URI</label>
+            </settings>
+        </column>
+        <column name="cache_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Cache ID</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Emoja\CacheWarmer\Model\Source\Status"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="group_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Group ID</label>
+            </settings>
+        </column>
+        <column name="store_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Store ID</label>
+            </settings>
+        </column>
+        <!--
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        -->
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Updated At</label>
+            </settings>
+        </column>
+        <column name="cached_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Cached At</label>
+            </settings>
+        </column>
+        <column name="warmed_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Warmed At</label>
+            </settings>
+        </column>
+        <column name="flushed_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Flushed At</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

@@ -1,0 +1,44 @@
+{
+    "emoja_cache_warmer_page": {
+        "column": {
+            "page_id": true,
+            "uri": true,
+            "cache_id": true,
+            "product_id": true,
+            "category_id": true,
+            "vary_data": true,
+            "store_id": true,
+            "group_id": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true,
+            "cached_at": true,
+            "flushed_at": true
+        },
+        "index": {
+            "EMOJA_CACHE_WARMER_PAGE_CACHE_ID": true,
+            "EMOJA_CACHE_WARMER_URI" : true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "emoja_cache_warmer_log": {
+        "column": {
+            "log_id": true,
+            "page_id": true,
+            "action": true,
+            "status": true,
+            "created_at": true
+        },
+        "constraint": {
+            "EMOJA_CACHE_WARMER_LOG_PAGE_ID_EMOJA_CACHE_WARMER_PAGE_PAGE_ID": true
+        },
+        "index": {
+            "EMOJA_CACHE_WARMER_LOG_PAGE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

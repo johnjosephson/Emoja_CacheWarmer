@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Emoja_CacheWarmer
+ *
+ * @category    Emoja
+ * @package     Emoja_CacheWarmer
+ * @copyright   Copyright (c) 2025 John Josephson
+ * @author      johnjay@alumni.caltech.edu
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+</config>

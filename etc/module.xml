@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Emoja_CacheWarmer
+ *
+ * @category    Emoja
+ * @package     Emoja_CacheWarmer
+ * @copyright   Copyright (c) 2023 Hero Digital
+ * @author      john.josephson@herodigital.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Emoja_CacheWarmer" setup_version="1.0.0" />
+    <sequence>
+        <module name="Magento_PageCache"/>
+        <module name="Wyomind_MassStockUpdate"/>
+        <module name="Amasty_Shopby"/>
+    </sequence>
+</config>

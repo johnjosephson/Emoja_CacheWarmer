@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <emoja_cachewarmer>
+            <general>
+                <enabled>1</enabled>
+                <curl_timeout>300</curl_timeout>
+                <mage_run_type>website</mage_run_type>
+                <debug>1</debug>
+                <cache_config_json>0</cache_config_json>
+            </general>
+            <cron>
+                <warm_count>10</warm_count>
+                <max_execution_time>120</max_execution_time>
+                <warm_cron_schedule>*/2 * * * *</warm_cron_schedule>
+                <check_cron_schedule>*/10 * * * *</check_cron_schedule>
+                <config_json_schedule>*/10 * * * *</config_json_schedule>
+                <clean_logs_days>7</clean_logs_days>
+                <clean_logs_schedule>35 0 * * *</clean_logs_schedule>
+            </cron>
+        </emoja_cachewarmer>
+    </default>
+</config>

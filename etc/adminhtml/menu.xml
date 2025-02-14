@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * Emoja_CacheWarmer
+ *
+ * @category    Emoja
+ * @copyright   Copyright (c) 2025 John Josephson
+ * @author      johnjay@alumni.caltech.edu
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Emoja_CacheWarmer::page_listing"
+             title="Cache Warmer Pages"
+             parent="Magento_Backend::system_tools"
+             translate="title"
+             module="Emoja_CacheWarmer"
+             sortOrder="1000"
+             action="cachewarmer/page/index"
+             resource="Emoja_CacheWarmer::page_listing"/>
+        <add id="Emoja_CacheWarmer::log_listing"
+             title="Cache Warmer Log"
+             parent="Magento_Backend::system_tools"
+             translate="title"
+             module="Emoja_CacheWarmer"
+             sortOrder="1000"
+             action="cachewarmer/log/index"
+             resource="Emoja_CacheWarmer::log_listing"/>
+    </menu>
+</config>

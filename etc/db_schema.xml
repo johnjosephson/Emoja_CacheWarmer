@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="emoja_cache_warmer_page" resource="default" engine="innodb" comment="emoja_cache_warmer_page">
+        <column xsi:type="int" name="page_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Page Id"/>
+        <column xsi:type="varchar" name="uri" length="1024" nullable="false" comment="URI"/>
+        <column xsi:type="varchar" name="cache_id" nullable="true" length="255" comment="Cache Id"/>
+        <column xsi:type="int" name="product_id" padding="11" unsigned="false" nullable="true" identity="false" comment="Product ID"/>
+        <column xsi:type="int" name="category_id" padding="11" unsigned="false" nullable="true" identity="false" comment="Category ID"/>
+        <column xsi:type="text" name="vary_data" nullable="true" comment="Vary Data"/>
+        <column xsi:type="int" name="store_id" padding="11" unsigned="true" nullable="true" identity="false" comment="store_id"/>
+        <column xsi:type="int" name="group_id" padding="11" unsigned="true" nullable="false" default="0" identity="false" comment="Group ID"/>
+        <column xsi:type="varchar" name="status" nullable="false" default="pending" comment="status" length="255"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="created_at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="updated_at"/>
+        <column xsi:type="timestamp" name="cached_at" on_update="false" nullable="true" comment="cached_at"/>
+        <column xsi:type="timestamp" name="flushed_at" on_update="false" nullable="true" comment="flushed_at"/>
+        <column xsi:type="timestamp" name="warmed_at" on_update="false" nullable="true" comment="warmed_at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="page_id"/>
+        </constraint>
+        <index referenceId="EMOJA_CACHE_WARMER_PAGE_CACHE_ID" indexType="btree">
+            <column name="cache_id"/>
+        </index>
+        <index referenceId="EMOJA_CACHE_WARMER_URI" indexType="btree">
+            <column name="uri"/>
+        </index>
+    </table>
+    <table name="emoja_cache_warmer_log" resource="default" engine="innodb" comment="emoja_cache_warmer_log">
+        <column xsi:type="int" name="log_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Log Id"/>
+        <column xsi:type="int" name="page_id" padding="11" unsigned="false" nullable="false" comment="Page Id"/>
+        <column xsi:type="varchar" name="action" nullable="false" comment="action" length="255"/>
+        <column xsi:type="varchar" name="status" nullable="false" comment="action" length="255"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"  comment="created_at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="log_id"/>
+        </constraint>
+        <index referenceId="EMOJA_CACHE_WARMER_LOG_PAGE_ID" indexType="btree">
+            <column name="page_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="EMOJA_CACHE_WARMER_LOG_PAGE_ID_EMOJA_CACHE_WARMER_PAGE_PAGE_ID" table="emoja_cache_warmer_log" column="page_id" referenceTable="emoja_cache_warmer_page" referenceColumn="page_id" onDelete="CASCADE"/>
+    </table>
+</schema>
